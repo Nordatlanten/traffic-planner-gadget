@@ -1,0 +1,15 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  gap: 24px;
+  min-height: 100vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  .main {
+    background-color: #333;
+  }
+}

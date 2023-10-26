@@ -1,0 +1,134 @@
+.main {
+  width: 100%;
+  padding: 24px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form{
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+.inputTitle{
+  margin-bottom: 12px;
+}
+.inputContainer{
+  flex-grow: 1;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.inputBlock{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  position: relative;
+
+  input{
+    padding: 16px 32px;
+  }
+  input + ul {
+    display: none;
+  }
+  &:focus-within ul {
+    display: flex;
+  }
+
+  b{
+    font-family: sans-serif;
+  }
+}
+
+.errorField{
+  text-align: right;
+  color: red;
+  font-family: sans-serif;
+}
+
+.hidden{
+  display:none;
+}
+
+.submitButton {
+  padding: 16px 32px;
+}
+
+.stopsList{
+  background-color: white;
+  list-style-type: none;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  inset: 0;
+  top: 100%;
+  z-index: 10;
+  max-height: 33rem;
+  will-change: filter;
+  filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.3));
+
+  li{
+    border: solid 1px #ccc;
+    padding: 8px 12px;
+    background-color: #fff;
+  }
+
+  li:first-child{
+    border-top: none;
+  }
+  li:nth-child(odd){
+    border-bottom: none;
+  }
+  li:nth-child(even){
+    background-color: #eee;
+    border-bottom: none;
+  }
+  li:last-child{
+    border-bottom: solid 1px #ccc;
+  }
+}
+
+.submitField{
+  margin-top: 29px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.hideStopsList{
+  display: none !important;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .main {
+    background-color: #ccc;
+    color: #000
+  }
+
+  .stopsList{
+    background-color: #ccc;
+    filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.3));
+  
+    li{
+      background-color: #ccc;
+    }
+    li:nth-child(even){
+      background-color: #aaa;
+    }
+    li:last-child{
+      border-bottom: solid 1px #aaa;
+    }
+  }
+}

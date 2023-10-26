@@ -1,0 +1,87 @@
+.main {
+  margin: 24px 0 0 0;
+  border-bottom: dotted 4px #ccc;
+  &:last-of-type{
+    border: none;
+  }
+}
+
+.detailsItem{
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.timeDisplay{
+  display: flex;
+  flex-direction: column;
+}
+
+.obsoleteTimeStamp{
+  margin-left: 4px;
+  text-decoration: line-through;
+}
+
+.stopsInBetweenDisplay{
+  color: #444;
+  margin: 6px 0 6px 6px;
+  cursor: pointer;
+}
+
+.stopsInBetween{
+  margin: 12px 0;
+}
+
+.walkDirectionsDisplay{
+  margin: 12px 0;
+}
+
+.lineIconDisplay{
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  margin: 16px 0 24px;
+}
+
+.lineIcon{
+  padding: 6px 10px 4px;
+  border-radius: 4px;
+  font-family: sans-serif;
+  font-weight: bold;
+  border: solid 1px;
+}
+
+.lineDirection{
+  font-size: 1rem;
+  font-family: sans-serif;
+}
+
+.wheelchairIndicator, .transportModeIcon {
+  font-size: 1.7rem;
+}
+
+.notesDisplay{
+  list-style-type: none;
+  margin-bottom: 16px;
+}
+
+.note{
+  padding: 12px;
+  margin: 12px 0;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+
+.noteIcon{
+  margin: 0px 6px 6px 0px;
+}
+
+.cancelledIndicator, .cancelledTimeStamp{
+  color: red;
+}
+
+.cancelledTimeStamp{
+  text-decoration: line-through;
+}

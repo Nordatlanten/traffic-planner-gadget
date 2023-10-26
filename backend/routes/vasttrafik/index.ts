@@ -19,6 +19,7 @@ type Token = {
 
 //Nifty little thing
 axios.interceptors.request.use((config) => {
+  if(process.env.ACCESS_TOKEN)
   if (process.env.ACCESS_TOKEN) {
     config.headers.Authorization = `Bearer ${process.env.ACCESS_TOKEN}`;
   }
@@ -32,25 +33,20 @@ router.get('/getToken', async function (_request, response) {
   response.send(data)
 })
 
-
-
 //Checks if there is a valid access token before fetching one.
 async function getAccessToken() {
 
   if(process.env.ACCESS_TOKEN != "") {
-      //Use the expiration-value in the JWT to check its timestamp with the current timestamp
-  let jwtObject = <Token> jwt.decode(process.env.ACCESS_TOKEN as string)  
-  let date = Date.now()
+    //Use the expiration-value in the JWT to check its timestamp with the current timestamp
+    let jwtObject = <Token> jwt.decode(process.env.ACCESS_TOKEN as string)  
+    let date = Date.now()
+    
+    if (date < jwtObject.exp * 1000)  {
+      console.log('The access token is valid.')
 
-  //Just making sure that this works
-  // let date = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).getTime()
-
-  if (date < jwtObject.exp * 1000)  {
-    console.log('The access token is valid.')
-
-    //If the token has not expired, it's good to go. Return the token and use it.
-    return process.env.ACCESS_TOKEN 
-  }
+      //If the token has not expired, it's good to go. Return the token and use it.
+      return process.env.ACCESS_TOKEN 
+    }
   } else {
     console.log('Access token is invalid. Grabbing a new one.')
 

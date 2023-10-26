@@ -1,0 +1,158 @@
+.main{
+  background: #fff;
+  &:nth-child(even){
+    background: #eee;
+  }
+  font-family: sans-serif;
+  line-height: 1.2;
+}
+
+.mainWalk{
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-family: sans-serif;
+}
+
+.walkTimeData{
+  text-align: right;
+}
+
+.walkTimeDisplay{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.leftSection, .rightSection{
+  display: flex;
+  gap: 12px;
+}
+
+.leftSection{
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rightSection{
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.foldoutTitle{
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.rightSectionLeftColumn, .rightSectionRightColumn{
+  display: flex;
+  flex-direction: column;
+}
+
+.rightSectionRightColumn{
+  justify-content: center;
+}
+
+
+.lineIconDisplay{
+  list-style-type: none;
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.journeyInfoIndicatorDisplay{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lineIcon {
+  padding: 6px 10px 4px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  font-family: sans-serif;
+  font-weight: bold;
+  border: solid 1px;
+}
+
+.walkDirectionsDisplay{
+  display: flex;
+  align-items: center;
+  padding: 24px 0;
+  border-top: dotted 4px #ccc;
+  margin: 24px 0 0;
+}
+
+.trackDisplay{
+  color: #888;
+}
+
+.journeySummary{
+  cursor: pointer;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 6px;
+}
+
+.foldout{
+  display: none;
+  padding: 12px 24px 24px 24px;
+  background-color: #ddd;
+}
+
+.showFoldout{
+  display: flex;
+}
+
+.timeStampDisplays{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.departureTimeStampDisplay, .arrivalTimeStampDisplay{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.hyphenDisplay{
+  display: flex;
+  flex-direction: column;
+}
+
+.obsoleteTimeStampArrival, .obsoleteTimeStampDeparture{
+  text-decoration: line-through;
+}
+
+.obsoleteTimeStampDeparture{
+  justify-self: flex-start;
+}
+
+.obsoleteTimeStampArrival{
+  justify-self: flex-end;
+}
+
+.journeyListDisplay{
+  width: 100%;
+  list-style-type: none;
+}
+
+.journeyOrigin{
+  font-size: 1rem;
+  font-family: sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  .main {
+    background-color: #ccc;
+    color: #000;
+    &:nth-child(even){
+      background: #aaa;
+    }
+  }
+}

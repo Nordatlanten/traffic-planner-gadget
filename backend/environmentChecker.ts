@@ -1,20 +1,39 @@
 import fs from 'fs'
 import PromptSync = require('prompt-sync')
+import jwt from 'jsonwebtoken'
+import 'dotenv/config'
 
 //This is a script that allows my software to create an environment file if it does not already exist.
 
 const prompt = PromptSync({sigint: true})
 
 type CreationOptions = 'y' | 'n' | null;
+type Token = {
+  exp: number
+}
 
 //Attempt to create variable from existing file
 try {
   let env = fs.readFileSync('.env', {encoding: 'utf8'})
-} catch (_error) {
-  //If file doesn't exist, run the actual script.
-  //We're not logging the error as the point of this script is to guide the user towards creating a .env-file.
 
-  console.log('Could not find an .env file in project.')
+  //Use the expiration-value in the JWT to check its timestamp with the current timestamp
+  let jwtObject = <Token> jwt.decode(process.env.ACCESS_TOKEN as string)  
+  let date = Date.now()
+  
+  if (date < jwtObject.exp * 1000)  {
+    console.log('The access token is valid.')
+
+    //If the token has not expired, it's good to go. Return the token and use it.
+    
+  } else {
+    fs.unlinkSync('.env')
+    throw new TypeError("Token has expired. So we deleted the file. Good bye file.");
+  }
+
+} catch (error) {
+  //If file doesn't exist, run the actual script.
+
+  console.log('Could not find a .env file in project.')
   let createFileCheck: CreationOptions = null
 
   //Prompt the user and proceed when a valid value has been received
@@ -48,7 +67,6 @@ try {
   if (correctValuesCheck === 'n'){
     throw new Error('Please try again with the correct values.')
   }
-  
   console.log('Proceeding to create .env-file')
   fs.writeFileSync('.env', storedValues, {encoding: 'utf8'})
   console.log('Created .env file. Now proceeding to check the file before starting application.')

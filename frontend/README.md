@@ -1,34 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
+# Frontend side of project
+To run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:4000](http://localhost:4000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What is this project?
+This is the frontend side of Traffic Planner Gadget, a web application I have created for the purpose of learning Typescript. 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## What does this project do?
+In this version of Traffic Planner Gadget you can search for Göteborg public transport journeys using the Västtrafik Developer API (https://developer.vasttrafik.se).
 
-## Learn More
+Seven journeys will be fetched and rendered by the application, and you can see detailed journey information for each journey.
 
-To learn more about Next.js, take a look at the following resources:
+## Is the final version?
+Not really. I plan to add more useful functionality to make use of what the Västtrafik Developer API provides, and because it is fun.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Like what?
+* Plan your journey by selecting departure or arrival timestamps to your search.
+* Display next departures from origin stop (without having to add a destination).
+* Utilize Tanstack React-Query to check if data is stale and refetch accordingly.
