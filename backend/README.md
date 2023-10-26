@@ -2,7 +2,7 @@
 To run this project:
 
 ```bash
-npm run install
+npm install
 npm run start
 ```
 
