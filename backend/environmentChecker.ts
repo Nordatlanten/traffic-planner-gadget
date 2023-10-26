@@ -61,7 +61,7 @@ try {
     if(correctValuesCheck != null) {
       console.log('Invalid input.')
     }
-    correctValuesCheck = <CreationOptions> prompt('Are these values fine? AUTH_KEY will be created by app. (y / n) | ', 'n')
+    correctValuesCheck = <CreationOptions> prompt('Are these values fine? ACCESS_TOKEN will be created by app. (y / n) | ', 'n')
   }
 
   if (correctValuesCheck === 'n'){
