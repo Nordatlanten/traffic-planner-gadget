@@ -90,7 +90,7 @@ export default function DetailsFoldout(props: DetailsFoldoutProps) {
           </span>
         }
         <ul className={styles.stopsInBetween}>
-          {displayStopsInBetween && stopsInBetween.map((step, i) =>
+          {displayStopsInBetween && stopsInBetween.map((step, _i) =>
             <li className={styles.detailsItem} key={step.index}>
               <div className={styles.timeDisplay}>
                 <b style={step.estimatedDepartureTime && step.estimatedDepartureTime !== step.plannedDepartureTime ? { background: '#fff8c8' } : {}}>

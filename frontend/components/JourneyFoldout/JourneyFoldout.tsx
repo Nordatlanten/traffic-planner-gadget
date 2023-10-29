@@ -17,6 +17,8 @@ export default function JourneyFoldout(props: React.PropsWithChildren<Data>) {
   const [journeyDetails, setJourneyDetails] = useState<JourneyType>()
   const [sortedJourney, setSortedJourney] = useState<Array<TripLeg | ConnectionLink>>([])
 
+  let uuid = self.crypto.randomUUID()
+
   const getDetailedJourney = (ref: string, connectionLinks: ConnectionLink[] | undefined) => {
     if (showFoldout && journeyDetails) {
       setShowFoldout(false)
@@ -30,8 +32,6 @@ export default function JourneyFoldout(props: React.PropsWithChildren<Data>) {
       })
         .then((response) => {
           setJourneyDetails(response.data)
-          console.log('data is:', response.data)
-
           //Appending tripLegs, connectionLinks and serviceJourney for data that can be presented in a list.
           concatenateAndSortByLegIndex(response.data.tripLegs, connectionLinks)
           setShowFoldout(!showFoldout)
@@ -54,7 +54,6 @@ export default function JourneyFoldout(props: React.PropsWithChildren<Data>) {
       })
       //Sorted list now ready to be displayed in foldout container
       setSortedJourney(concatenatedList)
-      console.log('sortedJourney: ', concatenatedList)
     }
   }
 
@@ -82,10 +81,10 @@ export default function JourneyFoldout(props: React.PropsWithChildren<Data>) {
         </div>
       )
     case 'journey':
-      let journeyData = props.data as JourneyType
+      let journeyData: JourneyType = props.data as JourneyType
       let tripLegs = journeyData.tripLegs
-      console.log('journey: ', journeyData)
-      let increment = 0
+  
+      let increment = 0;
       let hasDisruption: boolean = false
       let isPartCancelled: boolean = false
       let infoExists: boolean = false
@@ -188,16 +187,16 @@ export default function JourneyFoldout(props: React.PropsWithChildren<Data>) {
           <div className={[styles.foldout, showFoldout ? styles.showFoldout : ""].join(" ")}>
             <ul className={styles.journeyListDisplay}>
               {sortedJourney && sortedJourney.map((a: TripLeg | ConnectionLink, i) =>
-                <li key={a.journeyLegIndex}>
+                <li key={uuid + i}>
                   {'transportMode' in a &&                    
                     <div className={styles.walkDirectionsDisplay}>
                       <span> 🚶 Walk {calcTravelTime(a.origin.estimatedTime ? a.origin.estimatedTime : a.origin.plannedTime, a.destination.estimatedTime ? a.destination.estimatedTime : a.destination.plannedTime)} &gt; {a.destination.stopPoint.stopArea.name} <span className={styles.trackDisplay}>Track {a.destination.stopPoint.platform}</span></span>
                     </div>                  
                   }
-                  {'serviceJourneys' in a && a.callsOnTripLeg && a.serviceJourneys && tripLegs &&
+                  {'serviceJourneys' in a && a.callsOnTripLeg && a.serviceJourneys && tripLegs && tripLegs[increment] &&
 
                     <>
-                      <ExchangeTimeDisplay data={tripLegs[increment].estimatedConnectingTimeInMinutes ? { connectingTime: tripLegs[increment].estimatedConnectingTimeInMinutes, riskOfMissingConnection: riskOfMissingConnection } : { connectingTime: tripLegs[increment].plannedConnectingTimeInMinutes, riskOfMissingConnection: riskOfMissingConnection }} />          
+                      <ExchangeTimeDisplay data={tripLegs[increment].estimatedConnectingTimeInMinutes ? { connectingTime: tripLegs[increment].estimatedConnectingTimeInMinutes, riskOfMissingConnection: riskOfMissingConnection } : { connectingTime: tripLegs[increment].plannedConnectingTimeInMinutes, riskOfMissingConnection: riskOfMissingConnection }} />     
                       <DetailsFoldout data={{ callsOnTripLeg: a.callsOnTripLeg, serviceJourney: tripLegs[increment].serviceJourney, notes: tripLegs[increment].notes}} />
                       {(() => {
                         //only increment if item is tripLeg
