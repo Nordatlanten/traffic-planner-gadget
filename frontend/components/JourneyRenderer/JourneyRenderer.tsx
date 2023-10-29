@@ -9,15 +9,16 @@ type Data = {
 }
 
 export default function JourneyRenderer(props: React.PropsWithChildren<Data>) {
+  let uuid = self.crypto.randomUUID()
   if (props.data.destinationLink) {
     console.log('destination Link found', props.data.destinationLink)
     return (
-      <JourneyFoldout type='walk' data={props.data.destinationLink} />
+      <JourneyFoldout key={uuid} type='walk' data={props.data.destinationLink} />
     )
   }
   else if (props.data.tripLegs) {
     return (
-      <JourneyFoldout type='journey' data={props.data} />
+      <JourneyFoldout type='journey' key={uuid} data={props.data} />
     )
   }
 }
