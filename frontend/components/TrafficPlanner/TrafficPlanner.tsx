@@ -80,13 +80,21 @@ export default function TrafficPlanner(props: React.PropsWithChildren) {
     }
   }
 
+  const switchGids = () => {
+    setOrigin(destination)
+    setDestination(origin)
+    if(destinationGid) setOriginGid(destinationGid)
+    if(originGid) setDestinationGid(originGid)
+  }
+
   return (
     <div className={styles.main}> 
       <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.inputContainer}>
+      <div className={styles.formPanel}>
+        <div className={styles.inputContainer}>
           <div className={styles.inputBlock}>
-            <b className={styles.inputTitle}>From</b>
-            <input type="text" placeholder='Stop or station' value={origin} onClick={() => setShowOriginStopsList(true)} onChange={(e) => {
+            <label htmlFor="origin" className={styles.inputTitle}>From</label>
+            <input type="text" id="origin" placeholder='Stop or station' value={origin} onClick={() => setShowOriginStopsList(true)} onChange={(e) => {
               setOrigin(e.target.value)
               setShowOriginStopsList(false)
               onChangeLoadStops(e.target.value, 'origin')
@@ -102,9 +110,12 @@ export default function TrafficPlanner(props: React.PropsWithChildren) {
               )}
             </ul>
           </div>
+          <div className={styles.horizontalLine}>
+            <hr />
+          </div>
           <div className={styles.inputBlock}>
-            <b className={styles.inputTitle}>To</b>
-            <input type="text" placeholder='Stop or station' value={destination} onClick={() => setShowDestinationStopsList(true)} onChange={(e) => {
+            <label htmlFor="destination" className={styles.inputTitle}>To</label>
+            <input id="destination" type="text" placeholder='Stop or station' value={destination} onClick={() => setShowDestinationStopsList(true)} onChange={(e) => {
               setDestination(e.target.value)
               setShowDestinationStopsList(false)
               onChangeLoadStops(e.target.value, 'destination')
@@ -120,7 +131,12 @@ export default function TrafficPlanner(props: React.PropsWithChildren) {
               )}
             </ul>
           </div>
-          
+        </div>
+        <div className={styles.gidSwitcherSlot}>
+            <span className={styles.gidSwitcher} onClick={switchGids}>
+              🔃
+            </span>
+          </div>
         </div>
         <div className={styles.submitField}>
           <button className={styles.submitButton} disabled={originGid == destinationGid || !originGid || !destinationGid} type="submit">Search journey</button>
